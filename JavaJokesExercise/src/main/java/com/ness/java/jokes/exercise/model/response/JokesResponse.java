@@ -3,13 +3,13 @@ package com.ness.java.jokes.exercise.model.response;
 import java.util.ArrayList;
 
 public class JokesResponse {
-	ArrayList<String> jokeString;
+	StringBuffer jokeString;
 
-	public ArrayList<String> getJokeString() {
+	public StringBuffer getJokeString() {
 		return jokeString;
 	}
 
-	public void setJokeString(ArrayList<String> jokeString) {
+	public void setJokeString(StringBuffer jokeString) {
 		this.jokeString = jokeString;
 	}
 	

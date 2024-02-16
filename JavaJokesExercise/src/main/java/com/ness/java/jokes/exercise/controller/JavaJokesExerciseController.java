@@ -70,7 +70,7 @@ public class JavaJokesExerciseController {
 		}
 		//Else call the external render joke api
 		else {
-			CompletableFuture<JokesResponse> renderJokeResponse =  renderJokeService.getAJoke(count);
+			CompletableFuture<String> renderJokeResponse =  renderJokeService.getAJoke(count);
 			
 			responseEntity = new ResponseEntity(renderJokeResponse.get(), HttpStatus.OK);
 		}

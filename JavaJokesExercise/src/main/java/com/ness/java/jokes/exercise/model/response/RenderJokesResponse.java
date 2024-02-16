@@ -1,5 +1,7 @@
 package com.ness.java.jokes.exercise.model.response;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -12,6 +14,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Document(collection = "Jokes")
 public class RenderJokesResponse {
 	@JsonProperty
 	String type;

@@ -6,6 +6,6 @@ import com.ness.java.jokes.exercise.model.response.JokesResponse;
 import com.ness.java.jokes.exercise.model.response.RenderJokesResponse;
 
 public interface RenderJokeService {
-	public CompletableFuture<JokesResponse> getAJoke(Integer count);
+	public CompletableFuture<String> getAJoke(Integer count);
 	
 }

@@ -24,53 +24,49 @@ public class RenderJokeServiceImpl implements RenderJokeService{
 	
 	@Override
 	@Async 
-	public CompletableFuture<JokesResponse> getAJoke(Integer count) {
+	public CompletableFuture<String> getAJoke(Integer count) {
 		RestTemplate restTemplate = new RestTemplate();
+		StringBuffer joke = new StringBuffer();
 		
 		JokesResponse jokeResp = new JokesResponse();
 		
-		ArrayList<String> jokesList;
 		if(count == 1) {
 			RenderJokesResponse jokeResponse = restTemplate.getForObject(jokesApiUrl, RenderJokesResponse.class);
 			if(jokeResponse != null) {
-				StringBuffer joke = new StringBuffer();
+				
 				joke.append("1. ");
 				joke.append(jokeResponse.getSetup());
-				joke.append(System.getProperty("line.separator"));
+				joke.append("\n");
 				joke.append(jokeResponse.getPunchline());
+				//jokeResp.setJokeString(new StringBuffer(jokesList.get(0)));
 				
-				jokesList = new ArrayList<String>();
-				jokesList.add(joke.toString());
-				
-				jokeResp.setJokeString(jokesList);
 			}
 		}
 		else if(count > 1 && count < 10) {
-			jokesList = new ArrayList<String>();
+			
 			RenderJokesResponse jokeResponse= null ;
-			StringBuffer joke;
+			
 			for(int i = 0; i < count; i++) {
 				jokeResponse = restTemplate.getForObject(jokesApiUrl, RenderJokesResponse.class);
 					
 				if(jokeResponse != null) {
-					joke = new StringBuffer();
+					//joke = new StringBuffer();
 					joke.append(i+1 + ". ");
 					joke.append(jokeResponse.getSetup());
-					joke.append(System.getProperty("line.separator"));
+					joke.append("\n");
 					joke.append(jokeResponse.getPunchline());
-					jokesList.add(joke.toString());
+					joke.append("\n");
+					joke.append("\n");
 				}
 			}
 			
-			jokeResp.setJokeString(jokesList);
+			//jokeResp.setJokeString(jokesList);
 		}
 		else if(count >= 10) {
 			//System.out.println("*************Entering more than 10 records condition********************");
-			
-			jokesList = new ArrayList<String>();
-			ArrayList<String> finalList = new ArrayList<String>();
+			int countVar = 1;
 			RenderJokesResponse[] jokeResponses= null ;
-			StringBuffer joke;
+			
 			RenderJokesResponse jokeResponse= null ;
 			for(int i = 0; i < count % 10; i++) {
 				//System.out.println("Value of i " + i);
@@ -79,14 +75,21 @@ public class RenderJokeServiceImpl implements RenderJokeService{
 				if(jokeResponses != null) {
 					//System.out.println("jokeResponses.length " + jokeResponses.length);
 					for(int j=0; j < jokeResponses.length; j++) {
+						
+						if(countVar > count) {
+							break;
+						}
 						//System.out.println("Value of j " + j);
-						joke = new StringBuffer();
-						joke.append(j+1 + ". ");
+						//joke = new StringBuffer();
+						joke.append(countVar + ". ");
 						joke.append(jokeResponses[j].getSetup());
 						joke.append(System.getProperty("line.separator"));
 						joke.append(jokeResponses[j].getPunchline());
 						//System.out.println("#########countVar " + countVar);
-						finalList.add(joke.toString());
+						
+						joke.append("\n");
+						joke.append("\n");
+						countVar++;
 					}
 					
 				}
@@ -95,19 +98,24 @@ public class RenderJokeServiceImpl implements RenderJokeService{
 					jokeResponse = restTemplate.getForObject(jokesApiUrl, RenderJokesResponse.class);
 					
 					if(jokeResponse != null) {
-						joke = new StringBuffer();
-						joke.append(l+1 + ". ");
+						if(countVar > count) {
+							break;
+						}
+						
+						//joke = new StringBuffer();
+						joke.append(countVar + ". ");
 						joke.append(jokeResponse.getSetup());
 						joke.append(System.getProperty("line.separator"));
 						joke.append(jokeResponse.getPunchline());
-						finalList.add(joke.toString());
+						
+						joke.append("\n");
+						joke.append("\n");
+						countVar++;
 					}
 				}
 			}
-			
-			jokeResp.setJokeString(finalList);
 		}
-		return CompletableFuture.completedFuture(jokeResp);
+		return CompletableFuture.completedFuture(joke.toString());
 	}
 	
 	
