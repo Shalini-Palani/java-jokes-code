@@ -1,13 +1,15 @@
 package com.ness.java.jokes.exercise.model.response;
 
-public class JokesResponse {
-	String[] jokeString;
+import java.util.ArrayList;
 
-	public String[] getJokeString() {
+public class JokesResponse {
+	ArrayList<String> jokeString;
+
+	public ArrayList<String> getJokeString() {
 		return jokeString;
 	}
 
-	public void setJokeString(String[] jokeString) {
+	public void setJokeString(ArrayList<String> jokeString) {
 		this.jokeString = jokeString;
 	}
 	
