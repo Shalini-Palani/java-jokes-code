@@ -65,7 +65,7 @@ public class RenderJokeServiceImpl implements RenderJokeService{
 			jokeResp.setJokeString(jokesList);
 		}
 		else if(count >= 10) {
-			System.out.println("*************Entering more than 10 records condition********************");
+			//System.out.println("*************Entering more than 10 records condition********************");
 			
 			jokesList = new ArrayList<String>();
 			ArrayList<String> finalList = new ArrayList<String>();
@@ -73,13 +73,13 @@ public class RenderJokeServiceImpl implements RenderJokeService{
 			StringBuffer joke;
 			RenderJokesResponse jokeResponse= null ;
 			for(int i = 0; i < count % 10; i++) {
-				System.out.println("Value of i " + i);
+				//System.out.println("Value of i " + i);
 				jokeResponses = restTemplate.getForObject(jokes10ApiUrl, RenderJokesResponse[].class);
-				System.out.println("jokeResponses " + jokeResponses);
+				//System.out.println("jokeResponses " + jokeResponses);
 				if(jokeResponses != null) {
-					System.out.println("jokeResponses.length " + jokeResponses.length);
+					//System.out.println("jokeResponses.length " + jokeResponses.length);
 					for(int j=0; j < jokeResponses.length; j++) {
-						System.out.println("Value of j " + j);
+						//System.out.println("Value of j " + j);
 						joke = new StringBuffer();
 						joke.append(j+1 + ". ");
 						joke.append(jokeResponses[j].getSetup());
