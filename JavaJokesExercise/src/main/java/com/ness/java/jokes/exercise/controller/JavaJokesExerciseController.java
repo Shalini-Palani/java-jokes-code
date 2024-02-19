@@ -75,7 +75,7 @@ public class JavaJokesExerciseController {
 			responseEntity = new ResponseEntity(renderJokeResponse.get(), HttpStatus.OK);
 		}
 		
-		return responseEntity;
+		return responseEntity; 
 	}
 	
 }

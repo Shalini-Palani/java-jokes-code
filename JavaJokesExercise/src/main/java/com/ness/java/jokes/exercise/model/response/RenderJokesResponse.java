@@ -23,7 +23,7 @@ public class RenderJokesResponse {
 	String setup;
 	
 	@JsonProperty
-	String punchline;
+	String punchline; 
 	
 	@JsonProperty
 	String id;

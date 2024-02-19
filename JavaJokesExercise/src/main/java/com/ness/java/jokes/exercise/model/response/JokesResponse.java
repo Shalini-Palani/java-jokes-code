@@ -10,7 +10,7 @@ public class JokesResponse {
 	}
 
 	public void setJokeString(StringBuffer jokeString) {
-		this.jokeString = jokeString;
+		this.jokeString = jokeString; 
 	}
 	
 	
