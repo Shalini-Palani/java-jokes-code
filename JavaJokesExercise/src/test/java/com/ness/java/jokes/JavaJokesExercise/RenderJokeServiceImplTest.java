@@ -23,7 +23,7 @@ import com.ness.java.jokes.exercise.service.impl.RenderJokeServiceImpl;
 public class RenderJokeServiceImplTest {
 	
 	@Autowired
-	private MockMvc mockMvc;
+	private MockMvc mockMvc; 
 	
 	@InjectMocks
 	RenderJokeServiceImpl jokeService; //service under test
